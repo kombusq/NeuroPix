@@ -63,6 +63,24 @@ const Author = styled.div`
 `;
 
 const ImageCard = ({ item, heights }) => {
+  const downloadImage = async () => {
+    try {
+      if (!item?.photo) {
+        throw new Error("Image URL is missing");
+      }
+
+      const response = await fetch(item.photo);
+      if (!response.ok) {
+        throw new Error("Unable to download image");
+      }
+
+      const imageBlob = await response.blob();
+      FileSaver.saveAs(imageBlob, "download.png");
+    } catch (error) {
+      console.error("Image download failed:", error);
+    }
+  };
+
   return (
     <Card>
       <LazyLoadImage
@@ -88,7 +106,7 @@ const ImageCard = ({ item, heights }) => {
             {item?.name}
           </Author>
           <DownloadRounded
-            onClick={() => FileSaver.saveAs(item?.photo, `download.jpg`)}
+            onClick={downloadImage}
           />
         </div>
       </HoverOverlay>

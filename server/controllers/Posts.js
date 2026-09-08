@@ -40,7 +40,7 @@ export const createPost = async (req, res, next) => {
     const newPost = await Post.create({
       name,
       prompt,
-      photo: photo,
+      photo: photoUrl.secure_url,
     });
 
     return res.status(200).json({ success: true, data: newPost });
@@ -51,7 +51,6 @@ export const createPost = async (req, res, next) => {
     );
   }
 };
-
 
 
 
