@@ -17,7 +17,6 @@ const Container = styled.div`
   @media (max-width: 768px) {
     padding: 6px 10px;
   }
-  background: ${({ theme }) => theme.background};
 `;
 
 const HeadLine = styled.div`
@@ -27,12 +26,23 @@ const HeadLine = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  text-align: center;
+  gap: 6px;
+  @media (max-width: 600px) {
+    font-size: 26px;
+  }
 `;
 
 const Span = styled.div`
   font-size: 30px;
   font-weight: 800;
-  color: ${({ theme }) => theme.secondary};
+  background: ${({ theme }) => theme.gradient};
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  @media (max-width: 600px) {
+    font-size: 22px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -114,9 +124,9 @@ const Home = () => {
         handleChange={(e) => setSearch(e.target.value)}
       />
       <Wrapper>
-        {error && <div style={{ color: "red" }}>{error}</div>}
+        {error && <div style={{ color: "#ef5350" }}>{error}</div>}
         {loading ? (
-          <CircularProgress />
+          <CircularProgress sx={{ color: "#7C5CFC" }} />
         ) : (
           <CardWrapper>
             {filteredPost.length > 0 ? (
@@ -129,7 +139,7 @@ const Home = () => {
                   ))}
               </>
             ) : (
-              <>No Posts Found !!</>
+              <div style={{ opacity: 0.6 }}>No Posts Found !!</div>
             )}
           </CardWrapper>
         )}

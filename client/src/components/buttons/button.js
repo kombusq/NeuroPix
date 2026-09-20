@@ -8,13 +8,14 @@ const Button = styled.div`
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   height: min-content;
   padding: 10px 24px;
+  box-shadow: 0 4px 14px ${({ theme }) => theme.glow};
   @media (max-width: 600px) {
     padding: 8px 12px;
   }
@@ -22,18 +23,32 @@ const Button = styled.div`
   ${({ type, theme }) =>
     type === "secondary"
       ? `
-  background: ${theme.secondary};
+  background: linear-gradient(135deg, ${theme.secondary} 0%, ${theme.primary} 100%);
   `
       : `
-  background: ${theme.primary};
+  background: ${theme.gradient};
 `}
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px ${({ theme }) => theme.glow};
+    filter: brightness(1.08);
+  }
+
+  &:active {
+    transform: translateY(0px);
+  }
 
   ${({ isDisabled }) =>
     isDisabled &&
     `
   opacity: 0.4;
   cursor: not-allowed;
-
+  box-shadow: none;
+  &:hover {
+    transform: none;
+    filter: none;
+  }
   `}
   ${({ isLoading }) =>
     isLoading &&

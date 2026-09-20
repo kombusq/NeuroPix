@@ -1,17 +1,22 @@
 import { CircularProgress } from "@mui/material";
+import { ImageOutlined } from "@mui/icons-material";
 import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
   flex: 1;
   padding: 16px;
-  border: 2px dashed ${({ theme }) => theme.yellow + 90};
-  color: ${({ theme }) => theme.arrow + 80};
+  background: ${({ theme }) => theme.card_light};
+  border: 2px dashed ${({ theme }) => theme.card_border};
+  color: ${({ theme }) => theme.text_secondary};
   border-radius: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
+  font-size: 14px;
+  transition: all 0.25s ease;
 `;
 
 const Image = styled.img`
@@ -28,14 +33,17 @@ const GeneratedImageCard = ({ src, loading }) => {
       {loading ? (
         <>
           <CircularProgress
-            sx={{ color: "inherit", width: "24px", height: "24px" }}
+            sx={{ color: "inherit", width: "28px", height: "28px" }}
           />
           Generating Your Image . . .
         </>
       ) : src ? (
         <Image src={src} />
       ) : (
-        <>Write a prompt to generate image</>
+        <>
+          <ImageOutlined style={{ fontSize: "40px", opacity: 0.6 }} />
+          Write a prompt to generate image
+        </>
       )}
     </Container>
   );

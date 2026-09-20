@@ -10,35 +10,43 @@ const Container = styled.div`
 
 const Label = styled.label`
   font-size: 12px;
+  font-weight: 600;
   color: ${({ theme }) => theme.text_secondary};
   padding: 0px 4px;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 `;
 
 const OutlinedInput = styled.div`
-  border-radius: 8px;
-  border: 0.5px solid ${({ theme }) => theme.text_secondary + 70};
-  background-color: transparent;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.card_border};
+  background-color: ${({ theme }) => theme.card_light};
   color: ${({ theme }) => theme.text_secondary};
   outline: none;
   padding: 14px;
   display: flex;
   align-items: center;
   gap: 12px;
+  transition: all 0.25s ease;
   &:focus-within {
     border-color: ${({ theme }) => theme.primary};
+    box-shadow: 0 0 0 4px ${({ theme }) => theme.glow};
   }
 `;
 
 const Input = styled.input`
   width: 100%;
   font-size: 14px;
+  font-family: inherit;
   outline: none;
   border: none;
   background-color: transparent;
-  color: ${({ theme }) => theme.text_secondary};
+  color: ${({ theme }) => theme.text_primary};
   &:focus {
     outline: none;
+  }
+  &::placeholder {
+    color: ${({ theme }) => theme.text_secondary};
   }
 `;
 

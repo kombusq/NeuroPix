@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
@@ -8,6 +12,7 @@ body,
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
+  background: #0b0c14;
 }
 
 html {
@@ -16,22 +21,22 @@ html {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
   height: 0px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #222a35;
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #575c66;
+  background: linear-gradient(180deg, #7c5cfc, #00d2ff);
   border-radius: 6px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #626970;
+  background: linear-gradient(180deg, #6a47f5, #00b8e0);
 }

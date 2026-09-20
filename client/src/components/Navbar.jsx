@@ -2,22 +2,55 @@ import React from "react";
 import styled from "styled-components";
 import Button from "./buttons/button";
 import { useLocation, useNavigate } from "react-router";
-import { AddRounded, WebRounded } from "@mui/icons-material";
+import { AddRounded, AutoAwesome, WebRounded } from "@mui/icons-material";
 
 const Container = styled.div`
-  flex: 1;
   background: ${({ theme }) => theme.navbar};
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid ${({ theme }) => theme.navbar_border};
   color: ${({ theme }) => theme.menu_primary_text};
-  font-weight: bold;
-  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 50px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  padding: 16px 50px;
+  z-index: 10;
   @media only screen and (max-width: 600px) {
-    padding: 10px 12px;
+    padding: 12px 16px;
   }
+`;
+
+const Brand = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 18px;
+  }
+`;
+
+const BrandIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: ${({ theme }) => theme.gradient};
+  color: ${({ theme }) => theme.white};
+  box-shadow: 0 4px 16px ${({ theme }) => theme.glow};
+`;
+
+const BrandText = styled.span`
+  background: ${({ theme }) => theme.gradient};
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 const Navbar = () => {
@@ -32,10 +65,14 @@ const Navbar = () => {
   const gottoHome = () => {
     navigate("/");
   };
-  console.log(path);
   return (
     <Container>
-      NEURO PIX
+      <Brand onClick={gottoHome}>
+        <BrandIcon>
+          <AutoAwesome style={{ fontSize: "18px" }} />
+        </BrandIcon>
+        <BrandText>NEURO PIX</BrandText>
+      </Brand>
       {path[1] === "post" ? (
         <Button
           text="Explore Posts"
